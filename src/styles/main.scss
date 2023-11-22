@@ -1,0 +1,27 @@
+$color-black: black;
+$color-gray: #666666;
+$color-gray--light: #C6C6C6;
+$color-green--dark: #254741;
+$color-green: #029F59;
+$color-snow-drift: #F5F7F3;
+$color-white: #ffff;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    padding: 2rem;
+    align-content: center;
+    justify-content: center;
+    color:  #F5F7F3;
+}
+
+@import "./Layout.scss";
+@import "../components/Hader/Header.scss";
+@import "./ErrorPage.scss"

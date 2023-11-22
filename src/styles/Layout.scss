@@ -1,0 +1,16 @@
+.min-h-screen{
+    min-height: 100vh;
+    background-color: green($color: #952020);
+}
+
+.layout{
+    background-color: rgb(15 23 42);
+    min-height: 100vh;
+    padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    color: $color-white;
+}
+
+
+
