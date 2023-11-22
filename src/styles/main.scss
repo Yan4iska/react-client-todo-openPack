@@ -22,6 +22,12 @@ $font-weight-bold: 700;
     color:  #F5F7F3;
 }
 
+::placeholder{
+    color: $color-snow-drift;
+    padding-left: 0.3rem;
+}
+
 @import "./Layout.scss";
 @import "../components/Hader/Header.scss";
-@import "./ErrorPage.scss"
+@import "./ErrorPage.scss";
+@import "./Auth.scss"

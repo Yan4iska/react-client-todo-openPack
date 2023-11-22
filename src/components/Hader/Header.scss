@@ -59,7 +59,7 @@
 
 .btn{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 5px;
     align-items: center;
     padding: 0.5rem 1rem;
@@ -68,6 +68,7 @@
     font-weight: 600;
     text-decoration: none;
     color: $color-white;
+    cursor: pointer;
     
 
     &-red{
@@ -77,5 +78,21 @@
             background-color: #cc1f1a;
         }
     }
-}
 
+    &-green{
+        background-color: rgba(84, 208, 123, 0.994);
+        &:hover {
+            background-color: #0d4e10;
+        }
+    }
+
+
+}
+.btnLinks{
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    color: $color-white;
+    cursor: pointer;
+
+}
