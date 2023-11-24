@@ -30,4 +30,6 @@ $font-weight-bold: 700;
 @import "./Layout.scss";
 @import "../components/Header/Header.scss";
 @import "./ErrorPage.scss";
-@import "./Auth.scss"
+@import "./Auth.scss";
+@import "./Categories.scss";
+@import "../components/ModalWindows/CategoryModal.scss"

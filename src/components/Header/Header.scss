@@ -63,6 +63,7 @@
     gap: 5px;
     align-items: center;
     padding: 0.5rem 1rem;
+    border: 0px solid;
     border-radius: 0.25rem;
     height: auto;
     font-weight: 600;
@@ -75,9 +76,10 @@
         background-color: #e3342f;
         color: #ffff;
         &:hover {
-            background-color: #cc1f1a;
+            background-color: #cc201a9c;
         }
     }
+    
 
     &-green{
         background-color: rgba(84, 208, 123, 0.994);

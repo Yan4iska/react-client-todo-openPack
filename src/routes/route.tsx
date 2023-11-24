@@ -3,8 +3,9 @@ import Layout from "../pages/Layout";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
 import Problems from "../pages/Problems";
-import Categories from "../pages/Categories";
+import Categories, { categoriesAction, categoryLoader } from "../pages/Categories";
 import Auth from "../pages/Auth";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -18,11 +19,17 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'problems',
-                element: <Problems />
+                element: <ProtectedRoute>
+                            <Problems />
+                        </ProtectedRoute>
             },
             {
                 path: 'categories',
-                element: <Categories />
+                action: categoriesAction,
+                loader: categoryLoader,
+                element: <ProtectedRoute>
+                            <Categories />
+                        </ProtectedRoute>,
             },
             {
                 path: 'auth',

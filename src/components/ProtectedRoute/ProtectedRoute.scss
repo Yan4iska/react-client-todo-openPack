@@ -1,0 +1,15 @@
+.protect{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    gap: 1.25rem;
+    &__h1{
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    &__img{
+        width: 33.333333%;
+    }
+}
