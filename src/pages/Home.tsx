@@ -1,8 +1,10 @@
-import { FC } from "react"
+import { FC, useState } from "react"
+
+
 
 const Home: FC = () => {
   return (
-    <div>Home</div>
+<div>Hello Home</div>
   )
 }
 

@@ -53,6 +53,7 @@ export const categoryLoader = async ()=>{
   const {data} = await instance.get<ICategory>('/categories')
   return data
 }
+// console.log(categoryLoader)
 
 const Categories: FC = () => {
   //update fun
@@ -60,7 +61,7 @@ const Categories: FC = () => {
   const [categoryId, setCategoryId] = useState<number>(0)
   const [isEdit, setIsEdit] = useState<boolean>(false)
   //-----
-
+//console.log(categories)
   //console.log(categories)
   const [state, setState] = useState<boolean>(true)
   const [visibleModal, setVisibleModal] = useState<boolean>(false)

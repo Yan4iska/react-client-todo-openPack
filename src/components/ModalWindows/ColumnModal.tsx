@@ -2,17 +2,17 @@ import { FC } from "react"
 import { Form } from "react-router-dom"
 
 
-interface ICategoryModal{
+interface IColumnModal{
     type: 'POST' | 'PATCH'
     id?: number
     setVisibleModal: (visible: boolean) => void
 }
 
-const CategoryModal: FC<ICategoryModal> = ({type, id,  setVisibleModal}) => {
+const ColumnModal: FC<IColumnModal> = ({type, id,  setVisibleModal}) => {
   return (
     <div className="categoryModal">
         <Form 
-        action="/categories"
+        action="/problems"
         method={type}
         onSubmit={()=>setVisibleModal(false)}
         className="categoryModal__form">
@@ -39,4 +39,4 @@ const CategoryModal: FC<ICategoryModal> = ({type, id,  setVisibleModal}) => {
   )
 }
 
-export default CategoryModal
+export default ColumnModal

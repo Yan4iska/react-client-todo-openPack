@@ -28,3 +28,24 @@ export interface ICategory{
     updatedAt: string
     problems: []
 }
+
+export interface IColumn{
+    title: string
+    id: number
+    createdAt: string
+    updatedAt: string
+    problems: []
+}
+
+export interface IProblem{
+    id: number
+    title: string
+    content: string
+    status: boolean
+    createdAt: string
+    updatedAt: string
+    category: ICategory
+    descendants: IProblem[]
+    parent: IProblem
+
+}
