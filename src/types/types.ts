@@ -39,7 +39,7 @@ export interface IColumn{
     problems: []
 }
 
-export interface IProblem{
+export interface ITask{
     id: number
     title: string
     content: string
@@ -47,7 +47,7 @@ export interface IProblem{
     createdAt: string
     updatedAt: string
     category: ICategory
-    descendants: IProblem[]
-    parent: IProblem
+    descendants: ITask[]
+    parent: ITask
 
 }
