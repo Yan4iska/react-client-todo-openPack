@@ -1,0 +1,24 @@
+.task {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 5px;
+  align-items: center;
+  border: 1px solid black;
+  height: 30px;
+  margin: 5px;
+  gap: 5px;
+  &__title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 17em;
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+  }
+}

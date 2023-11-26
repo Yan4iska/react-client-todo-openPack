@@ -54,8 +54,8 @@ export const tasksAction = async ({request}:any)=>{
         title: formData.get('title'),
         content: formData.get('content'),
         category: formData.get('category'),
-	      case: formData.get('case'),
-	      parent: formData.get('parent'),
+        case: formData.get('case'),
+        parent: formData.get('parent'),
       };
       await instance.post('/problem', title)
       return null;
@@ -108,7 +108,7 @@ const Problems: FC = () => {
 
           {activeColumn && (<Board column={activeColumn} key={activeColumn.id}/>)}
     </div>
-    
+
     {
         visibleModal && (
             <ColumnModal type="POST" setVisibleModal={setVisibleModal}/>
