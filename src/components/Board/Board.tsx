@@ -1,56 +1,29 @@
 
 import { useState } from 'react';
-import {  IColumn, Id } from '../../types/types'
+import {  IColumn } from '../../types/types'
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
-import { Form, useLoaderData } from 'react-router-dom';
-import { columnLoader } from '../../pages/Problems';
+import { Form } from 'react-router-dom';
 import ColumnModal from '../ModalWindows/ColumnModal';
-import { useSortable } from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities'
+
 
 interface Props{
     column: IColumn
-    deleteColumn: (id: Id) => void
 }
 
-function Board (props: Props, deleteColumn: Props) {
+function Board (props: Props) {
 
-  const [columnId, setColumnId] = useState<number>(0)
-  const [isEdit, setIsEdit] = useState<boolean>(false)
-  const [visibleModal, setVisibleModal] = useState<boolean>(false)
+    const [columnId, setColumnId] = useState<number>(0)
+    const [isEdit, setIsEdit] = useState<boolean>(false)
+    const [visibleModal, setVisibleModal] = useState<boolean>(false)
 
     const {column} = props
 
-    const {setNodeRef, attributes, listeners, transform, transition, isDragging} = useSortable({
-        id: column.id,
-        data: {
-            type: "IColumn",
-            column,
-        }
-    });
-
-    const style = {
-        transition,
-        transform: CSS.Transform.toString(transform),
-    }
-    if(isDragging){
-        return <div ref={setNodeRef}
-        style={style}
-        className='column column__inDrag'>
-            
-        </div>
-    }
-
     return (<>
         <div 
-        ref={setNodeRef}
-        style={style}
         className='column'>
             {/* column title */}
             <div 
-            {...attributes}
-            {...listeners}
             className='column__title'>
                 <div className='column__title--gap'>
                     <div className="column__title--count">0</div>
@@ -72,7 +45,7 @@ function Board (props: Props, deleteColumn: Props) {
                         <input type="hidden" name="id" 
                         value={column.id}
                         />
-                        <button onClick={()=>deleteColumn} className='column__title__btn'>
+                        <button className='column__title__btn'>
                             <FaRegTrashAlt size='1rem' color='white'/>
                         </button>
                     </Form>
@@ -84,7 +57,7 @@ function Board (props: Props, deleteColumn: Props) {
             </div>
             {/* column footer */}
             <div className="column__footer">
-
+                    footer
             </div>
         </div>
 

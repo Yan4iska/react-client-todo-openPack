@@ -5,11 +5,6 @@ import ColumnModal from '../components/ModalWindows/ColumnModal';
 import { useLoaderData } from 'react-router-dom';
 import { IColumn } from '../types/types';
 import Board from '../components/Board/Board';
-import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { SortableContext, arrayMove } from '@dnd-kit/sortable';
-import { DragStart } from 'react-beautiful-dnd';
-import { createPortal } from 'react-dom';
-import { Id } from 'react-toastify';
 
 export const columnsAction = async ({request}:any)=>{
   if(!request){
@@ -48,98 +43,46 @@ export const columnsAction = async ({request}:any)=>{
 };
 
 export const columnLoader = async ()=>{
-  const {data} = await instance.get<IColumn>('/cases')
- //best// console.log(data)
+  const {data} = await instance.get<IColumn[]>('/cases')
   return data
 }
 
-
 const Problems: FC = () => {
-  const data = useLoaderData() as IColumn[]
-  const [columns, setColumns] = useState(data)
- //best// console.log(columns)
-  const [visibleModal, setVisibleModal] = useState<boolean>(false)
-  const [isEdit, setIsEdit] = useState<boolean>(false)
-  const [columnId, setColumnId] = useState<number>(0)
+    const columns = useLoaderData() as IColumn[]
+    const [visibleModal, setVisibleModal] = useState<boolean>(false)
+    const [isEdit, setIsEdit] = useState<boolean>(false)
+    const [columnId, setColumnId] = useState<number>(0)
+    const [activeColumn, setActiveColumn] = useState<IColumn | null>(null)
 
-  // for dnd fortableContext
-  const columnsId = useMemo(()=> columns.map((col)=>col.id), [columns])
+  return (
+    <>
+    <div className='board'>
 
-  const [activeColumn, setActiveColumn] = useState<IColumn | null>(null)
+        <div className='board--mAuto'>
+            <div className='board__gap'>
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 300,
-      },
-    })
-  );
+              {columns.map((col)=>(
+                <Board key={col.id} column={col}/>
+              ))}
 
-return (
-  <>
-  <div className='board'>
-    <DndContext sensors={sensors} onDragStart={ onDragStart} onDragEnd={onDragEnd}>
-      <div className='board--mAuto'>
-          <div className='board__gap'>
-            <SortableContext items={columnsId}>
-            {columns.map((col)=>(
-               <Board deleteColumn={deleteColumn} key={col.id} column={col}/>
-            ))}
-            </SortableContext>
-          </div>
-          <button onClick={()=>{
-              setVisibleModal(true)
-          }} className='board__btn'>
-          <FaPlus/>
-          <span>Add column</span>
-          </button>
-      </div>
-      {/* ======================================================= */}
-      {createPortal(<DragOverlay>
-        {activeColumn && (<Board deleteColumn={deleteColumn} column={activeColumn} key={activeColumn.id}/>)}
-      </DragOverlay>, document.body)}
-      {/* ======================================================= */}
-  
-    </DndContext>
-  </div>
+            </div>
+            <button onClick={()=>{
+                setVisibleModal(true)
+            }} className='board__btn'>
+            <FaPlus/>
+            <span>Add column</span>
+            </button>
+        </div>
 
-
-  {
-      visibleModal && (
-          <ColumnModal type="POST" setVisibleModal={setVisibleModal}/>
-      )
-  }
-  </>
-)
-  function onDragStart(event: DragStartEvent){
-   // console.log("DRAG START", event);
-    if(event.active.data.current?.type === "IColumn"){
-      setActiveColumn(event.active.data.current.column);
-      return;
-    }
-  }
-  function onDragEnd(event: DragEndEvent){
-    const {active, over} = event
-    if(!over) return;
+          {activeColumn && (<Board column={activeColumn} key={activeColumn.id}/>)}
+    </div>
     
-    const activeColumnId = active.id
-    const overColumnId = over.id
-
-    if(activeColumnId === overColumnId) return;
-     setColumns(columns => {
-      const activeColumnIndex = columns.findIndex(col => col.id === activeColumnId)
-      const overColumnIndex = columns.findIndex(col => col.id ===overColumnId)
-
-      return arrayMove(columns, activeColumnIndex, overColumnIndex)
-     })
-  }
-
-
-  function deleteColumn(){
-    setColumns(data);
-  }
+    {
+        visibleModal && (
+            <ColumnModal type="POST" setVisibleModal={setVisibleModal}/>
+        )
+    }
+    </>
+  )
 }
-//console.log(ColumnModal);
-
-
 export default Problems
