@@ -6,7 +6,7 @@
     // justify-content: space-between;
     padding: 1rem;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    background-color: rgb(30 41 59);
+    background-color: $color-header;
     backdrop-filter: blur(4px);
 
         &__logo{
@@ -59,23 +59,42 @@
 
 .btn{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 5px;
     align-items: center;
     padding: 0.5rem 1rem;
+    border: 0px solid;
     border-radius: 0.25rem;
     height: auto;
     font-weight: 600;
     text-decoration: none;
     color: $color-white;
+    cursor: pointer;
     
 
     &-red{
         background-color: #e3342f;
         color: #ffff;
         &:hover {
-            background-color: #cc1f1a;
+            background-color: #cc201a9c;
         }
     }
-}
+    
 
+    &-green{
+        background-color: rgba(84, 208, 123, 0.994);
+        &:hover {
+            background-color: #0d4e10;
+        }
+    }
+
+
+}
+.btnLinks{
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    color: $color-white;
+    cursor: pointer;
+
+}

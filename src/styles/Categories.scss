@@ -1,0 +1,76 @@
+.categories{
+    margin-top: 2.5rem;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    background-color: rgb(30 41 59); //800
+    &__content{
+        margin-top: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+
+    }
+
+
+    &__item{
+        cursor: pointer;
+        display: flex;
+        position: relative;
+       padding-left: 1rem;
+       padding-right: 1rem;
+       padding-top: 0.5rem;
+       padding-bottom: 0.5rem;
+       border-radius: 0.5rem; /* 8px */
+       gap: 0.5rem;
+       align-items: center;
+       background-color: rgb(21, 25, 141);
+       
+    }
+
+    &__inside{
+   
+        position: absolute;
+        display: none;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 0.5rem; /* 8px */
+        background-color: rgb(0 0 0);
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        opacity: 80%;
+        
+        
+    }
+
+    &__button{
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        max-width: fit-content;
+        display: flex;
+        align-items: center;
+        margin-top: 1.25rem;
+        gap: 0.5rem;
+        color: $color-gray--light;
+        &:hover{
+            color: $color-white;
+        }
+    }
+
+}
+.group:hover .group-hover\:flex{
+    display: flex;
+  }
+
+.gg {
+    display: flex;
+}
+
+.flex{
+    display: flex;
+}

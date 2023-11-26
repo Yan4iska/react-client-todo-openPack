@@ -5,10 +5,12 @@ $color-green--dark: #254741;
 $color-green: #029F59;
 $color-snow-drift: #F5F7F3;
 $color-white: #ffff;
-
+$color-header: rgb(74, 74, 113);
+$color-layout: rgba(42, 15, 42, 0);
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
+$color-content: rgb(30 41 59);
 
 *{
     margin: 0;
@@ -22,6 +24,29 @@ $font-weight-bold: 700;
     color:  #F5F7F3;
 }
 
+::placeholder{
+    color: $color-snow-drift;
+    padding-left: 0.3rem;
+}
+
 @import "./Layout.scss";
-@import "../components/Hader/Header.scss";
-@import "./ErrorPage.scss"
+@import "../components/Header/Header.scss";
+@import "./ErrorPage.scss";
+@import "./Auth.scss";
+@import "./Categories.scss";
+@import "../components/ModalWindows/CategoryModal.scss";
+@import "../components/Board/Board.scss";
+
+
+
+::-webkit-scrollbar{
+    width: 4px;
+}
+
+::-webkit-scrollbar:horizontal{
+    height: 8px;
+}
+
+::-webkit-scrollbar{
+    color: $color-green;
+}
