@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import {  IColumn } from '../../types/types'
+import {  IColumn, Id } from '../../types/types'
 import { FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 import { Form, useLoaderData } from 'react-router-dom';
@@ -11,9 +11,10 @@ import {CSS} from '@dnd-kit/utilities'
 
 interface Props{
     column: IColumn
+    deleteColumn: (id: Id) => void
 }
 
-function Board (props: Props) {
+function Board (props: Props, deleteColumn: Props) {
 
   const [columnId, setColumnId] = useState<number>(0)
   const [isEdit, setIsEdit] = useState<boolean>(false)
@@ -21,7 +22,7 @@ function Board (props: Props) {
 
     const {column} = props
 
-    const {setNodeRef, attributes, listeners, transform, transition} = useSortable({
+    const {setNodeRef, attributes, listeners, transform, transition, isDragging} = useSortable({
         id: column.id,
         data: {
             type: "IColumn",
@@ -32,6 +33,13 @@ function Board (props: Props) {
     const style = {
         transition,
         transform: CSS.Transform.toString(transform),
+    }
+    if(isDragging){
+        return <div ref={setNodeRef}
+        style={style}
+        className='column column__inDrag'>
+            
+        </div>
     }
 
     return (<>
@@ -64,7 +72,7 @@ function Board (props: Props) {
                         <input type="hidden" name="id" 
                         value={column.id}
                         />
-                        <button className='column__title__btn'>
+                        <button onClick={()=>deleteColumn} className='column__title__btn'>
                             <FaRegTrashAlt size='1rem' color='white'/>
                         </button>
                     </Form>

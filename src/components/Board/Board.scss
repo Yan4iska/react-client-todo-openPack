@@ -44,6 +44,7 @@
     max-height: 500px;
     display: flex;
     flex-direction: column;
+    border-radius: 0.375rem;
     
     &__title{
         display: flex;
@@ -77,7 +78,7 @@
         }
         &__btns{
             display: flex;
-            
+
         }
         &__btn{
             display: flex;
@@ -102,5 +103,15 @@
     &__footer{
 
     }
+
+    &__inDrag{
+        opacity: 90%;
+        border-width: 2px;
+        border: solid;
+        border-color: rgb(255, 127, 127);
+
+
+    }
 }
+
 

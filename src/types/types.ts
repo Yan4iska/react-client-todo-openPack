@@ -29,6 +29,8 @@ export interface ICategory{
     problems: []
 }
 
+export type Id = string | number;
+
 export interface IColumn{
     title: string
     id: number

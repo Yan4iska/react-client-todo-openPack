@@ -5,9 +5,11 @@ import ColumnModal from '../components/ModalWindows/ColumnModal';
 import { useLoaderData } from 'react-router-dom';
 import { IColumn } from '../types/types';
 import Board from '../components/Board/Board';
-import { DndContext, DragOverlay, DragStartEvent } from '@dnd-kit/core';
-import { SortableContext } from '@dnd-kit/sortable';
+import { DndContext, DragEndEvent, DragOverlay, DragStartEvent, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { DragStart } from 'react-beautiful-dnd';
+import { createPortal } from 'react-dom';
+import { Id } from 'react-toastify';
 
 export const columnsAction = async ({request}:any)=>{
   if(!request){
@@ -53,7 +55,8 @@ export const columnLoader = async ()=>{
 
 
 const Problems: FC = () => {
-  const columns = useLoaderData() as IColumn[]
+  const data = useLoaderData() as IColumn[]
+  const [columns, setColumns] = useState(data)
  //best// console.log(columns)
   const [visibleModal, setVisibleModal] = useState<boolean>(false)
   const [isEdit, setIsEdit] = useState<boolean>(false)
@@ -64,15 +67,23 @@ const Problems: FC = () => {
 
   const [activeColumn, setActiveColumn] = useState<IColumn | null>(null)
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 300,
+      },
+    })
+  );
+
 return (
   <>
   <div className='board'>
-    <DndContext onDragStart={ onDragStart}>
+    <DndContext sensors={sensors} onDragStart={ onDragStart} onDragEnd={onDragEnd}>
       <div className='board--mAuto'>
           <div className='board__gap'>
             <SortableContext items={columnsId}>
             {columns.map((col)=>(
-               <Board key={col.id} column={col}/>
+               <Board deleteColumn={deleteColumn} key={col.id} column={col}/>
             ))}
             </SortableContext>
           </div>
@@ -83,8 +94,12 @@ return (
           <span>Add column</span>
           </button>
       </div>
-
-      {/* TO BE CONTINUE ... <DragOverlay></DragOverlay> */}
+      {/* ======================================================= */}
+      {createPortal(<DragOverlay>
+        {activeColumn && (<Board deleteColumn={deleteColumn} column={activeColumn} key={activeColumn.id}/>)}
+      </DragOverlay>, document.body)}
+      {/* ======================================================= */}
+  
     </DndContext>
   </div>
 
@@ -103,8 +118,28 @@ return (
       return;
     }
   }
+  function onDragEnd(event: DragEndEvent){
+    const {active, over} = event
+    if(!over) return;
+    
+    const activeColumnId = active.id
+    const overColumnId = over.id
 
+    if(activeColumnId === overColumnId) return;
+     setColumns(columns => {
+      const activeColumnIndex = columns.findIndex(col => col.id === activeColumnId)
+      const overColumnIndex = columns.findIndex(col => col.id ===overColumnId)
+
+      return arrayMove(columns, activeColumnIndex, overColumnIndex)
+     })
+  }
+
+
+  function deleteColumn(){
+    setColumns(data);
+  }
 }
 //console.log(ColumnModal);
+
 
 export default Problems
