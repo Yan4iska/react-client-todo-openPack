@@ -42,40 +42,8 @@ export const columnsAction = async ({request}:any)=>{
   }
 };
 
-export const tasksAction = async ({request}:any)=>{
-  if(!request) {
-    return null;
-  }
-
-  switch(request.method){
-    case "POST": {
-      const formData = await request.formData();
-      const title = {
-        title: formData.get('title'),
-        content: formData.get('content'),
-        category: formData.get('category'),
-        case: formData.get('case'),
-        parent: formData.get('parent'),
-      };
-      await instance.post('/problem', title)
-      return null;
-    }
-    case "PATCH": {
-      return null;
-    }
-    case "DELETE":{
-      return null;
-    }
-  }
-};
-
 export const columnLoader = async ()=>{
   const {data} = await instance.get<IColumn[]>('/cases')
-  return data
-}
-
-export const TaskLoader = async ()=>{
-  const {data} = await instance.get<ITask[]>('/problem')
   return data
 }
 

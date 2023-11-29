@@ -20,7 +20,8 @@
         min-width: 350px;
         cursor: pointer;
         border-radius: 0.5rem;
-        background-color: $color-content;
+        background-color: blue;
+        color: white;
         border: 0.5rem solid rgb(82, 16, 148);
         padding: 1rem;
         --tw-ring-color: rgb(244 63 94);
@@ -100,11 +101,13 @@
         flex-direction: column;
         display: flex;
         flex-grow: 1;
+        align-items: center;
     }
     &__footer{
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 1rem;
     }
 
     &__inDrag{

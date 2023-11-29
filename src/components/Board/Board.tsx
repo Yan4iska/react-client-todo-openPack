@@ -28,7 +28,7 @@ const Board:FC<Props> = (props) => {
         }
 
         getTask()
-    }, [props.column.id])
+    }, [tasks])
 
     const {column} = props
 
@@ -69,7 +69,7 @@ const Board:FC<Props> = (props) => {
                 </div>
                 {/* column footer */}
                 <div className="column__footer">
-                    <button onClick={() => setVisibleModalCreateTask(true)}>
+                    <button className='btn btn-green' onClick={() => setVisibleModalCreateTask(true)}>
                         +add task
                     </button>
                 </div>

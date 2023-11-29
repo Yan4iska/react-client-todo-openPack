@@ -1,0 +1,22 @@
+.taskForm{
+    display: grid;
+    gap: 0.5rem;
+    width: 80%;
+    border-radius: 0.375rem;
+    background-color: rgb(15 23 42);
+    padding: 2%;
+    height: 50%;
+}
+// input{
+//     max-height: 2rem;
+//     max-width: 80%;
+// }
+
+// label{
+//     display: grid;
+//     margin: 1rem;
+// }
+select{
+    height: 2rem;
+    max-width: 80%;
+}

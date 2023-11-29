@@ -34,11 +34,27 @@ const TaskModal: FC<ITask> = ({type, id,  setVisibleModal, titleProps, descProps
 	}
 	return (
 		<div className="categoryModal">
-			<label>title</label>
-			<input placeholder="title" onChange={event => setTitle(event.target.value)}/>
-			<label>desc</label>
-			<input placeholder="desc" onChange={event => setDesc(event.target.value)}/>
-			<button onClick={handleClick}>submit</button>
+			<div className="categoryModal__form">
+				<label>title</label>
+				<input placeholder="title" onChange={event => setTitle(event.target.value)}/>
+				<label>desc</label>
+				<input placeholder="desc" onChange={event => setDesc(event.target.value)}/>
+				<label>categories</label>
+				<select name="category">
+					<option value="1">front</option>
+					<option value="2">back</option>
+
+				</select>
+				<label>Parent</label>
+				<select name="parent">
+					<option value="1">front</option>
+					<option value="2">back</option>
+				</select>
+				<button className='btn btn-green' onClick={handleClick}>submit</button>
+				<button onClick={()=>setVisibleModal(false)} className="btn btn-red categoryModal__btn">
+                    Close
+                </button>
+			</div>
 		</div>
 	)
 }
